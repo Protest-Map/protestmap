@@ -74,10 +74,10 @@ def create_app(config_class=Config):
                 admin.add_view(AdminModelView(model, db.session, endpoint=endpoint, name=name))
 
     # Register Blueprints AFTER models and views
-    from app.routes import routes_bp
+    from app.blueprints.routes import routes_bp
     app.register_blueprint(routes_bp)
 
-    from app.auth import auth_bp
+    from app.blueprints.auth import auth_bp
     app.register_blueprint(auth_bp, url_prefix='/auth')
 
     # Register error handlers

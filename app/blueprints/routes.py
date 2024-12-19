@@ -11,7 +11,7 @@ from app.models import Category, Tag, Organization, Location, Marker, MarkerTran
 import logging
 
 # Import the auth blueprint
-from app.auth import auth_bp  # This will import the auth blueprint
+from app.blueprints.auth import auth_bp  # This will import the auth blueprint
 
 # Initialize logger
 logger = logging.getLogger(__name__)
