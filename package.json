@@ -1,0 +1,23 @@
+{
+  "name": "protest-map-postgres",
+  "version": "1.0.0",
+  "description": "A full-stack volunteer-led, community-run, participatory crowdmapping website.",
+  "main": "index.js",
+  "dependencies": {
+    "@yaireo/tagify": "^4.32.2",
+    "js-tokens": "^4.0.0",
+    "loose-envify": "^1.4.0",
+    "object-assign": "^4.1.1",
+    "prop-types": "^15.8.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-is": "^16.13.1",
+    "scheduler": "^0.25.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

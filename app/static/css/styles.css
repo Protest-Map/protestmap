@@ -1,0 +1,355 @@
+/* Font Import */
+@font-face {
+    font-family: 'RedOctober';
+    src: url('/static/RedOctober.ttf') format('truetype');
+}
+
+
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.map-container {
+    width: 100%;
+    height: 100vh; /* or some defined height */
+  }
+  
+
+#map {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    z-index: 0; /* Ensure map is behind other elements */
+}
+
+/* Project Title Styling */
+.project-title {
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    text-align: center;
+    font-family: 'RedOctober', sans-serif;
+    font-size: 20px;
+    color: #ff0000;
+    text-shadow: 
+        1px 1px 0px #000000,
+        2px 2px 0px #00ff00,
+        1px 1px 6px rgba(0, 0, 0, 0.8);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Hover Effect for the Title */
+.project-title h1:hover {
+    color: #111;
+    text-shadow: 
+        5px 5px 10px rgba(0, 255, 0, 0.9),
+        -5px -5px 10px rgba(0, 0, 0, 1);
+    transform: scale(1.05);
+}
+
+/* Sidebar Buttons */
+#addMarkerBtn, #toggleInfoBtn {
+    position: absolute;
+    top: 20px;
+    z-index: 1000;
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#addMarkerBtn {
+    right: 20px;
+}
+
+#toggleInfoBtn {
+    left: 20px;
+}
+
+#addMarkerBtn:hover, #toggleInfoBtn:hover {
+    background-color: #0056b3;
+}
+
+/* Sidebars */
+.sidebar {
+    position: fixed;
+    top: 0;
+    height: 100%;
+    background-color: #f4f4f4;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    padding: 20px;
+    overflow-y: auto;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Left Sidebar */
+.left-sidebar {
+    left: -100%; /* Hidden by default */
+    width: 30%; /* Adjust width as needed */
+}
+
+.left-sidebar.show-sidebar {
+    left: 0; /* Show the left sidebar */
+}
+
+/* Right Sidebar */
+.right-sidebar {
+    right: -100%; /* Hidden by default */
+    width: 30%; /* Adjust width as needed */
+}
+
+.right-sidebar.show-sidebar {
+    right: 0; /* Show the right sidebar */
+}
+
+/* Sidebar styles */
+#markerSidebar {
+    display: none; /* Initially hidden */
+    position: fixed;
+    top: 0;
+    right: -400px; /* Hidden off-screen initially */
+    width: 400px;
+    height: 100%;
+    background-color: white;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease-in-out;
+    z-index: 9999; /* Make sure it's above other elements */
+}
+
+#markerSidebar.show-sidebar {
+    display: block; /* Sidebar will be shown */
+    transform: translateX(-100%); /* Slide in from right */
+}
+
+
+
+/* Sidebar Header */
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.sidebar-header h2 {
+    font-size: 20px;
+    color: #333;
+    margin: 0;
+}
+
+.sidebar-header .close-sidebar {
+    cursor: pointer;
+    font-size: 24px;
+    color: #333;
+    transition: color 0.3s ease-in-out;
+}
+
+.sidebar-header .close-sidebar:hover {
+    color: #ff0000;
+}
+
+/* Sidebar Content */
+.sidebar-content label {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: block;
+    color: #333;
+}
+
+.sidebar-content input,
+.sidebar-content textarea,
+.sidebar-content select,
+.sidebar-content button {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.sidebar-content input:focus,
+.sidebar-content textarea:focus,
+.sidebar-content select:focus {
+    border-color: #007BFF;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+}
+
+.sidebar-content button {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.sidebar-content button:hover {
+    background-color: #0056b3;
+}
+
+/* Additional styling for the buttons */
+button[type="submit"] {
+    align-self: flex-start;
+}
+
+/* Search Form Styling */
+#searchForm {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center; /* Vertically align all elements */
+    gap: 10px; /* Space between elements */
+}
+
+#searchForm select,
+#searchForm input {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    height: 40px; /* Ensure equal height */
+    flex: 1; /* Equal width for all input fields */
+    box-sizing: border-box; /* Include padding in height */
+}
+
+#searchForm button {
+    padding: 0 15px; /* Keep horizontal padding but remove vertical */
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    height: 40px; /* Match height with other inputs */
+    display: flex;
+    align-items: center; /* Center content inside the button */
+    justify-content: center; /* Center content horizontally */
+    cursor: pointer;
+    box-sizing: border-box; /* Include padding in height */
+}
+
+#searchForm button:hover {
+    background-color: #0056b3;
+}
+
+#searchFormContainer form {
+    display: flex;
+    gap: 10px;
+    max-width: 800px; /* or another width limit */
+    flex-wrap: wrap;  /* allows wrapping if space is limited */
+}
+
+#searchFormContainer input,
+#searchFormContainer select {
+    flex-basis: 30%; /* Each takes ~30% of width */
+    flex-grow: 1;
+    min-width: 100px;
+}
+
+
+/* Social Icons */
+.social-icons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.social-icons a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transition: transform 0.3s ease-in-out;
+}
+
+.social-icons a:hover {
+    transform: scale(1.1);
+}
+
+.social-icons .twitter-icon {
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/6/60/Twitter_Logo_as_of_2021.svg');
+}
+
+.social-icons .facebook-icon {
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg');
+}
+
+.social-icons .instagram-icon {
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png');
+}
+
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 5px;
+    border: 0px transparent #ccc;
+    padding: 5px;
+    border-radius: 0px;
+    background-color: #f9f9f9;
+}
+
+.selected-tags {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 5px;
+}
+
+.selected-tags li {
+    background-color: #007bff;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.selected-tags li span {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.tags-input {
+    border: none;
+    flex-grow: 1;
+    outline: none;
+}
+
+.tagify {
+    width: 100%; /* ensure it doesn't exceed its parent's width */
+    box-sizing: border-box;
+}
+
+
+.tagify__dropdown__wrapper {
+    max-height: 200px; /* Set the max height to whatever you prefer */
+    overflow-y: auto;   /* Enable vertical scroll */
+}
+
